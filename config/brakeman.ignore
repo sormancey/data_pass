@@ -24,13 +24,47 @@
       "note": ""
     },
     {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "2bb987dd38216ba96c59d12599cd711d4695013729282cc7c199282ff7ac55e9",
+      "check_name": "CrossSiteScripting",
+      "message": "Unescaped model attribute",
+      "file": "app/views/instruction/invite_applicant_to_claim_authorization_request_instructor_draft/new.html.erb",
+      "line": 21,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "t(\".error.message.#{InviteApplicantToClaimAuthorizationRequestInstructorDraft.call(authorization_request_instructor_draft_params.merge(:authorization_request_instructor_draft => AuthorizationRequestInstructorDraft.find(params[:authorization_request_instructor_draft_id]))).error}\")",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "Instruction::InviteApplicantToClaimAuthorizationRequestInstructorDraftController",
+          "method": "create",
+          "line": 19,
+          "file": "app/controllers/instruction/invite_applicant_to_claim_authorization_request_instructor_draft_controller.rb",
+          "rendered": {
+            "name": "instruction/invite_applicant_to_claim_authorization_request_instructor_draft/new",
+            "file": "app/views/instruction/invite_applicant_to_claim_authorization_request_instructor_draft/new.html.erb"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "instruction/invite_applicant_to_claim_authorization_request_instructor_draft/new"
+      },
+      "user_input": "AuthorizationRequestInstructorDraft.find(params[:authorization_request_instructor_draft_id])",
+      "confidence": "Weak",
+      "cwe_id": [
+        79
+      ],
+      "note": ""
+    },
+    {
       "warning_type": "SQL Injection",
       "warning_code": 0,
       "fingerprint": "356e6d0847ba9e4d4d88c2b5a9016a2b71f1cdd821248af8384b997249c4eec0",
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/lib/seeds.rb",
-      "line": 18,
+      "line": 20,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
       "code": "ActiveRecord::Base.connection.execute(\"TRUNCATE TABLE #{table} CASCADE;\")",
       "render_path": null,
@@ -224,7 +258,7 @@
       "check_name": "Render",
       "message": "Render path contains parameter value",
       "file": "app/views/instruction/dashboard/show.html.erb",
-      "line": 34,
+      "line": 40,
       "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
       "code": "render(action => (Instruction::DashboardHabilitationsFacade.new(:search_object => Instruction::Search::DashboardHabilitationsSearch.new(:params => (params), :scope => policy_scope([:instruction, Authorization]))) or Instruction::DashboardDemandesFacade.new(:search_object => Instruction::Search::DashboardDemandesSearch.new(:params => (params), :scope => policy_scope([:instruction, AuthorizationRequest])))).partial, { :items => (Instruction::DashboardHabilitationsFacade.new(:search_object => Instruction::Search::DashboardHabilitationsSearch.new(:params => (params), :scope => policy_scope([:instruction, Authorization]))) or Instruction::DashboardDemandesFacade.new(:search_object => Instruction::Search::DashboardDemandesSearch.new(:params => (params), :scope => policy_scope([:instruction, AuthorizationRequest])))).items, :search_engine => (Instruction::DashboardHabilitationsFacade.new(:search_object => Instruction::Search::DashboardHabilitationsSearch.new(:params => (params), :scope => policy_scope([:instruction, Authorization]))) or Instruction::DashboardDemandesFacade.new(:search_object => Instruction::Search::DashboardDemandesSearch.new(:params => (params), :scope => policy_scope([:instruction, AuthorizationRequest])))).search_engine })",
       "render_path": [
@@ -298,5 +332,5 @@
       "note": ""
     }
   ],
-  "brakeman_version": "7.0.2"
+  "brakeman_version": "7.1.0"
 }
